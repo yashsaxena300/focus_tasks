@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Focus</title>
+    <!-- Preconnect for Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <!-- Import Fonts: Inter, Roboto, Playfair Display, Space Mono, Lora -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Lora:ital,wght@0,400;0,500;1,400&family=Playfair+Display:wght@400;600&family=Roboto:wght@300;400;500&family=Space+Mono:wght@400;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#121212">
+    <!-- Feather Icons for lightweight SVGs -->
+    <script src="https://unpkg.com/feather-icons"></script>
+    <script>
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('./sw.js')
+                    .then(registration => {
+                        console.log('ServiceWorker registration successful');
+                    })
+                    .catch(err => {
+                        console.log('ServiceWorker registration failed: ', err);
+                    });
+            });
+        }
+    </script>
+</head>
+
+<body class="font-1">
+    <div id="app">
+        <!-- Main View -->
+        <div id="main-view" class="view active">
+            <!-- Header -->
+            <header>
+                <div id="date-display" class="no-select">Date</div>
+                <div id="time-progress-bar-container">
+                    <div id="time-progress-bar"></div>
+                </div>
+                <h1 id="time-display" class="no-select">00:00</h1>
+            </header>
+
+            <!-- Task List -->
+            <main id="task-container">
+                <div id="empty-state" class="hidden">No tasks for today</div>
+                <ul id="task-list">
+                    <!-- Tasks injected here -->
+                </ul>
+            </main>
+
+            <!-- Footer -->
+            <footer>
+                <div class="input-wrapper">
+                    <input type="text" id="new-task-input" placeholder="Add a new task..." autocomplete="off">
+                </div>
+                <button id="settings-btn" class="icon-btn">
+                    <i data-feather="settings"></i>
+                </button>
+            </footer>
+        </div>
+
+        <!-- Settings View -->
+        <div id="settings-view" class="view right">
+            <header class="settings-header">
+                <button id="back-btn" class="icon-btn">
+                    <i data-feather="arrow-left"></i>
+                    <!-- Changed to arrow-left for strict back icon if preferred, or chevron-left. User said back arrow top left. -->
+                </button>
+                <h2>Settings</h2>
+            </header>
+
+            <div class="settings-content">
+                <section>
+                    <h3>Daily Routine</h3>
+                    <p class="subtext">These tasks reset every midnight.</p>
+                    <ul id="daily-task-list">
+                        <!-- Daily tasks inputs -->
+                    </ul>
+                    <button id="add-daily-task-btn" class="text-btn">+ Add Daily Task</button>
+                </section>
+
+                <section>
+                    <h3>Theme Color</h3>
+                    <div class="color-selector">
+                        <div class="color-btn" style="background: #ef5350;" data-color="red"></div>
+                        <div class="color-btn" style="background: #ffb74d;" data-color="orange"></div>
+                        <div class="color-btn" style="background: #fff176;" data-color="yellow"></div>
+                        <div class="color-btn" style="background: #66bb6a;" data-color="green"></div>
+                        <div class="color-btn" style="background: #42a5f5;" data-color="blue"></div>
+                        <div class="color-btn" style="background: #ab47bc;" data-color="purple"></div>
+                        <div class="color-btn" style="background: #b0bec5;" data-color="gray"></div>
+                    </div>
+                </section>
+
+                <section>
+                    <h3>Typography</h3>
+                    <div class="font-selector">
+                        <button class="font-btn active" data-font="1">1</button>
+                        <button class="font-btn" data-font="2">2</button>
+                        <button class="font-btn" data-font="3">3</button>
+                        <button class="font-btn" data-font="4">4</button>
+                        <button class="font-btn" data-font="5">5</button>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </div>
+    <script src="app.js"></script>
+</body>
+
+</html>
