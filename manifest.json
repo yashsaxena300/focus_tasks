@@ -1,0 +1,17 @@
+{
+  "name": "Focus - Aesthetic To-Do",
+  "short_name": "Focus",
+  "description": "A minimalist, aesthetic to-do list application.",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#121212",
+  "theme_color": "#121212",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "icon-512.png",
+      "type": "image/png",
+      "sizes": "512x512"
+    }
+  ]
+}
